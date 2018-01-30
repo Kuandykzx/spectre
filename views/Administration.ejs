@@ -1,0 +1,50 @@
+<h1>Users Administrion</h1>
+
+<table class="table">
+      <tr>
+        <th>id <span class="glyphicon glyphicon-lock gi-075"></th>
+        <th>username <span class="glyphicon glyphicon-lock gi-075"></th>
+        <th>email <span class="glyphicon glyphicon-lock gi-075"></th>
+        <th>isAdmin</th>
+        <th>isModerator</th>
+      </tr>
+
+    <% users.forEach(function(user){ %>
+    <tr>
+        <td><%= user.id%></td>
+        <td><%= user.name%></td>
+        <td><%= user.email%></td>
+        <form action="/update" method="post">
+        <td><input type="checkbox" name="isAdmin" onchange="changeAdmin(<%= user.id %>,<%= user.isAdmin%>)" <% if(user.isAdmin) { %> checked <% } %> ></td>
+        <td><input type="checkbox" name="isModerator" onchange="changeModerator(<%user%>)" <% if(user.isModerator) { %> checked <% } %> ></td>
+        </form>
+
+        <!-- <form action="/login" method="post">
+
+            <label for="email">Email</label>
+            <input name="email" type="text"/>
+            <br/>
+
+            <label for="password">password</label>
+            <input name="password" type="password"/>
+            <br/>
+
+            <input type="submit"/>
+        </form> -->
+        
+    </tr>
+    <% }) %>
+</table>
+    
+<script type="text/javascript">
+    function changeAdmin(id,isAdmin){
+        var data = {};
+        data.id = id; 
+        if (isAdmin) data.isAdmin = false; 
+        else data.isAdmin = true;
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/user/updateAdmin");
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(data));
+    }
+</script>>

@@ -1,0 +1,49 @@
+<h1 class="display-4">All Posts</h1>
+<table class="table table-striped">
+    
+    <tbody>
+        <% posts.forEach(function(post){ %>
+            <tr>
+                
+<header class="w3-container w3-blue">
+  <h1><%= post.title %></h1>
+</header>
+<h5><%= post.author %></h5>
+<div class="w3-container">
+  <p><%= post.body %></p>
+</div>
+
+<footer class="w3-container w3-blue">
+<!--   <h5><%= post.id %></h5>
+ -->  
+ <a href="/posts/edit/<%= post.id %>" class="btn btn-primary">Edit</a>
+  <form class="d-inline" action="/posts/delete/<%= post.id %>" method="post">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+</form>
+</footer>
+
+</div>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+
+
+ <!-- <div class="content">
+        <div class="container">
+          <div class="row">
+            <% posts.forEach(function(post){ %>
+            <ul class="post-grid">
+            <h3><%= post.title %></h3>
+            <p></p>
+            <p class="fa fa-comment push-left"> 
+            </p>
+            <p class="fa fa-heart push-right"> 
+            </p>
+          </li>
+        </ul>
+        <% })%>
+        </div>
+    </div>
+</div> -->
